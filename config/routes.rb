@@ -1,18 +1,21 @@
 ProgectWithAuthenticate::Application.routes.draw do
-  get "static_pages/about"
 
-  get "static_pages/home"
+  get "authorize/new"
 
-  get "static_pages/help"
-
-  get "static_pages/sign_up"
-
-  #get "users/new"
+  get "authorize/create"
 
   resources :users
+  resources :sessions, only: [ :new, :create, :destroy,  ]
+  resources :authorize, only: [ :new, :create ]
+
   match '/signup' => 'users#new', as: :signup
   match '/home' => 'static_pages#home'
   match '/about' => 'static_pages#about'
+  match '/help' => 'static_pages#help'
+
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
