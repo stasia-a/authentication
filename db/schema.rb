@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120928090153) do
+ActiveRecord::Schema.define(:version => 20120930124720) do
 
   create_table "roles", :force => true do |t|
     t.string   "role_of_user"
@@ -20,12 +20,31 @@ ActiveRecord::Schema.define(:version => 20120928090153) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "sessions", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "client_id",                                 :null => false
+    t.string   "ip_address",                                :null => false
+    t.string   "user_agent"
+    t.integer  "login_count",                :default => 0, :null => false
+    t.string   "unique_key"
+    t.datetime "unique_key_generated_at"
+    t.integer  "confirmation_failure_count", :default => 0, :null => false
+    t.datetime "client_confirmed_at"
+    t.datetime "authenticated_at"
+    t.datetime "finished_at"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
+
+  add_index "sessions", ["user_id", "client_id"], :name => "index_sessions_on_user_id_and_client_id", :unique => true
+
   create_table "users", :force => true do |t|
     t.string   "login"
     t.string   "email"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
+    t.string   "auth_secret"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
