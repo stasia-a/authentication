@@ -3,16 +3,7 @@
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@session) do |f| %>
-
-        <%= f.label :email, "Email or login" %>
-        <%= f.text_field :email %>
-
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-
-        <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
-    <% end %>
+  <%= render 'form'%>
 
     <p>New user? <%= link_to "Sign up now!", new_user_path %></p>
   </div>

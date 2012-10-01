@@ -1,0 +1,11 @@
+  <%= form_for(@session) do |f| %>
+
+
+      <%= f.label :email, "Email or login" %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+  <% end %>

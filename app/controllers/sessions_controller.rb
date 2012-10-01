@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
   skip_before_filter :session_required, :only => [:new, :track, :create, :finish]
   skip_before_filter :confirmed_session_required , :signed_in_user
 
+  layout :choose_layout
+
   def new
     reset_session
     @session = Session.new
@@ -14,10 +16,20 @@ class SessionsController < ApplicationController
 
     if @session.authentic?
       session[:user_id] = @session.user.id
-      redirect_to :track_sessions, :notice => "Welcome back"
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Welcome back"
+          redirect_to :track_sessions
+        end
+        format.js { render :redirect }
+      end
     else
-      flash.now.alert = "Invalid email or password"
-      render 'new'
+      respond_to do |format|
+        #flash.now.alert = "Invalid email or password"
+        format.html {render 'new' }
+        format.js
+      end
+
     end
   end
 
@@ -96,5 +108,9 @@ class SessionsController < ApplicationController
   def session_required
     @session = current_user.sessions.find_by_id(params[:id])
     redirect_to :root unless @session
+  end
+
+  def choose_layout
+    (request.xhr?) ? nil : 'application'
   end
 end

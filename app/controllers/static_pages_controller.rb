@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  skip_before_filter :confirmed_session_required , :signed_in_user
+  skip_before_filter :user_required, :session_required, :confirmed_session_required, :signed_in_user
 
   def home
   end
@@ -7,6 +7,6 @@ class StaticPagesController < ApplicationController
   def help
   end
 
-  def signup
+  def main
   end
 end
