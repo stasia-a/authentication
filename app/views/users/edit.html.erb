@@ -1,6 +1,6 @@
-<h1>Sign up</h1>
+<% content_for(:title) { 'Edit user' } %>
+<h1>Update your profile</h1>
 
-<% content_for(:title) { 'Sign up' } %>
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %>
@@ -13,18 +13,18 @@
         <%= f.text_field :email %>
 
         <%= f.label :full_name %>
-        <%= f.text_field :full_name, title: 'You can leave this field empty' %>
+        <%= f.text_field :full_name %>
 
         <%= f.label :password %>
         <%= f.password_field :password %>
 
-        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.label :password_confirmation, "Confirm Password" %>
         <%= f.password_field :password_confirmation %>
 
-        <%= f.submit "Create my account", class: "btn btn-large btn-primary" %> or <%= link_to 'Sign in', :new_session %>
+        <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
+
+    <%= gravatar_for @user %>
+    <a href="http://gravatar.com/emails">change</a>
   </div>
 </div>
-
-
-

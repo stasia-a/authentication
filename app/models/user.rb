@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :login, :password, :password_confirmation
+  attr_accessible :email, :login, :password, :password_confirmation, :full_name
   has_secure_password
 
   validates :login, presence: true, uniqueness: true
@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   validates :auth_secret, presence: true
+  validates :full_name, length: { maximum: 26 }
 
   after_save { |user| create_role(user)}
   before_save { |user| user.email = email.downcase }

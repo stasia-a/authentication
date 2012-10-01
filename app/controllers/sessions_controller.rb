@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_filter :user_required, :only => [:new, :create]
   skip_before_filter :session_required, :only => [:new, :track, :create, :finish]
-  skip_before_filter :confirmed_session_required
+  skip_before_filter :confirmed_session_required , :signed_in_user
 
   def new
     reset_session

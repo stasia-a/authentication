@@ -1,10 +1,11 @@
+<% content_for(:title) { 'Sign in' } %>
 <h1>Sign in</h1>
 
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@session) do |f| %>
 
-        <%= f.label :email %>
+        <%= f.label :email, "Email or login" %>
         <%= f.text_field :email %>
 
         <%= f.label :password %>

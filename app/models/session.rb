@@ -1,6 +1,6 @@
 class Session < ActiveRecord::Base
-  attr_accessor :email, :password, :validation_code
-  attr_accessible :email, :password, :ip_address, :user_agent, :client_id, :login_count, :authenticated_at, :finished_at
+  attr_accessor :email, :password, :login, :validation_code
+  attr_accessible :email, :password, :login, :ip_address, :user_agent, :client_id, :login_count, :authenticated_at, :finished_at
 
   validates :client_id, uniqueness: { scope: :user_id }
   belongs_to :user
@@ -10,7 +10,7 @@ class Session < ActiveRecord::Base
   scope :expired, lambda { confirmed.where("client_confirmed_at < ?", Time.zone.now - 30.days) }
 
   def authentic?
-    user = User.find_by_email(self.email)
+    user = User.where( 'email in (?) or login in (?) ', self.email , self.email ).first
     if user && user.authenticate(self.password)
       self.password = nil
       self.user = user

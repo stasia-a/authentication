@@ -10,6 +10,9 @@ gem 'bootstrap-sass'
 gem 'bcrypt-ruby'
 gem 'uuidtools'
 gem 'rotp'
+gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 
 # Gems used only for assets and not required
@@ -25,6 +28,14 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+group  :test do
+  gem 'capybara'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

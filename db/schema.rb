@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120930124720) do
+ActiveRecord::Schema.define(:version => 20121001085008) do
 
   create_table "roles", :force => true do |t|
     t.string   "role_of_user"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120930124720) do
     t.datetime "finished_at"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.string   "login"
   end
 
   add_index "sessions", ["user_id", "client_id"], :name => "index_sessions_on_user_id_and_client_id", :unique => true
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20120930124720) do
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
     t.string   "auth_secret"
+    t.string   "full_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

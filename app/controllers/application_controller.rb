@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user, :current_session
-  before_filter :user_required, :session_required, :confirmed_session_required
+  helper_method :current_user, :current_session, :signed_in? , :current_user?
+  before_filter :user_required, :session_required, :confirmed_session_required, :signed_in_user
 
   private
   def current_user
@@ -27,5 +27,13 @@ class ApplicationController < ActionController::Base
   def confirmed_session_required
     redirect_to confirm_session_url(current_session),
                 :alert => "This device is not recognised" unless current_session.confirmed?
+  end
+
+  def signed_in?
+    !current_user.nil?
+  end
+
+  def current_user?(user)
+    current_user == user
   end
 end
