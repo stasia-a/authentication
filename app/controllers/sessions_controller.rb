@@ -25,8 +25,10 @@ class SessionsController < ApplicationController
       end
     else
       respond_to do |format|
-        #flash.now.alert = "Invalid email or password"
-        format.html {render 'new' }
+        format.html do
+          flash.now[:error] = 'Invalid email/password combination'
+          render 'new'
+        end
         format.js
       end
 

@@ -1,5 +1,5 @@
-  <%= form_for(@session) do |f| %>
-
+  <%= form_for(@session) do |f|  %>
+      <%= render 'shared/error_messages' , :object => f.object %>
 
       <%= f.label :email, "Email or login" %>
       <%= f.text_field :email %>

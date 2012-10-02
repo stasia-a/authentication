@@ -66,6 +66,9 @@
  *   $(document).bind('reveal.facebox', function() { ...stuff to do after the facebox and contents are revealed... })
  *
  */
+//$.facebox.settings.closeImage = '/images/closelabel.png' ;
+//$.facebox.settings.loadingImage = '/images/loading.gif' ;
+
 (function($) {
   $.facebox = function(data, klass) {
     $.facebox.loading()

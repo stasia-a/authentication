@@ -14,16 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require facebox
+//= require path_name_facebox_images
 //= require_tree .
-$(document).ready(function() {
-    $('#signin-link').facebox({
-        loading_image : 'loading.gif',
-        close_image   : 'closelabel.png'
-    });
-    $(document).bind('reveal.facebox', function() {
-        $('#new_session').submit(function() {
-            $.post(this.action, $(this).serialize(), null, "script");
-            return false;
-        });
-    });
-});
+

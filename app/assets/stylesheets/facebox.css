@@ -1,9 +1,3 @@
-facebox {
-    background:url(/images/b.png);
-}
-#facebox .tl {
-    background:url(/images/tl.png);
-}
 
 #facebox {
   position: absolute;

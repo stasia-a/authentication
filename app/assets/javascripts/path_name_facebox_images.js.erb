@@ -1,0 +1,14 @@
+
+jQuery(document).ready(function() {
+    $('#signin-link').facebox({
+        loadingImage : "<%= asset_path('facebox/loading.gif') %>",
+        closeImage   : "<%= asset_path('facebox/closelabel.png') %>"
+    });
+
+    $(document).bind('reveal.facebox', function() {
+        $('#new_session').submit(function() {
+            $.post(this.action, $(this).serialize(), null, "script");
+            return false;
+        });
+    });
+});
