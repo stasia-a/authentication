@@ -13,13 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20121001085008) do
 
-  create_table "roles", :force => true do |t|
-    t.string   "role_of_user"
-    t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
+  
   create_table "sessions", :force => true do |t|
     t.integer  "user_id"
     t.string   "client_id",                                 :null => false

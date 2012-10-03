@@ -16,7 +16,8 @@ gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem "asset_sync"
-
+gem 'rails_admin'
+gem 'rails3-generators'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -53,3 +54,6 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+
+gem "devise"
