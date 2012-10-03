@@ -15,7 +15,7 @@ gem 'rotp'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-
+gem "asset_sync"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -27,7 +27,6 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem "asset_sync"
 end
 
 gem 'jquery-rails'
