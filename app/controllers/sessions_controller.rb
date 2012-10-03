@@ -17,16 +17,22 @@ class SessionsController < ApplicationController
     if @session.authentic?
       session[:user_id] = @session.user.id
       respond_to do |format|
+
         format.html do
           flash[:notice] = "Welcome back"
           redirect_to :track_sessions
         end
-        format.js { redirect_to :track_sessions }
+
+        format.js do
+          redirect_to :track_sessions
+        end
+
       end
     else
+      flash.now[:error] = 'Invalid email/password combination'
+
       respond_to do |format|
         format.html do
-          flash.now[:error] = 'Invalid email/password combination'
           render 'new'
         end
         format.js
@@ -54,7 +60,15 @@ class SessionsController < ApplicationController
     @session = Session.find_or_initialize_by_user_id_and_client_id(current_user.id, client_id)
 
     # check if we have already authenticated this session
-    redirect_to params[:next] || :root and return if @session == current_session
+    if @session == current_session
+      respond_to do |format|
+        format.html { redirect_to :root }
+        format.js { render text: root_url, status: 202 }
+      end
+
+      return
+    end
+
 
     @session.update_attributes(
         :ip_address => request.remote_ip,
@@ -80,7 +94,11 @@ class SessionsController < ApplicationController
     @session.send_confirmation_code unless @session.confirmed?
 
     flash.keep # pass on any flash messages
-    redirect_to params[:next] || :root
+
+    respond_to do |format|
+      format.html { redirect_to :root }
+      format.js { render text: root_url, status: 202 }
+    end
   end
 
   def confirm
