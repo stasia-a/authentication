@@ -18,6 +18,9 @@ gem 'bootstrap-will_paginate'
 gem "asset_sync"
 gem 'devise'
 gem "rails_admin"
+gem 'omniauth'
+gem 'oauth2'
+gem 'omniauth-facebook'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
