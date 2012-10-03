@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
           flash[:notice] = "Welcome back"
           redirect_to :track_sessions
         end
-        format.js { render :redirect }
+        format.js { redirect_to :track_sessions }
       end
     else
       respond_to do |format|

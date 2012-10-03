@@ -1,4 +1,4 @@
-  <%= form_for(@session) do |f|  %>
+  <%= form_for(@session, remote: true) do |f|  %>
       <%= render 'shared/error_messages' , :object => f.object %>
 
       <%= f.label :email, "Email or login" %>
